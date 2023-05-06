@@ -49,19 +49,23 @@
                             </li>
 
                         </ul>
-                        <a href="http://localhost:8080/ResumeDesign/UserLogIn.jsp"> My Account</a>
+                        <a class="nav-link active" href="http://localhost:8080/ResumeDesign/UserLogIn.jsp"> My Account</a>
 
                     </div>
                 </div>
             </nav>
 
         </div>
-        <div class="intro-container">
-            <div>
-                <p class="white">ONLINE RESUME BUILDER</p>
-                <h1>Only 2% of resumes make it past the first round. Be in the top 2%</h1>
+        <div class="container-fluid w-50" style="padding-top: 100px;">
+            <div class="text-center  mx-auto">
+                <h6>ONLINE RESUME BUILDER</h6>
+
+                <h1 class="fw-bold">Only 2% of resumes make it past the first round. Be in the top 2%</h1>
+
             </div>
-            <button type="button" class="btn btn-primary btn-lg">Build my CV</button>
+            <div class="col-lg text-center">
+                <button type="button" class="btn btn-primary btn-lg">Build my CV</button>
+            </div>
         </div>
 
     </body>
