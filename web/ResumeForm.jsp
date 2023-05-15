@@ -11,9 +11,22 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
         <style>
+            body{
+                background-color: lightsteelblue;
+            }
             .small{
                 font-size: 14px;
             }
+            .form-control{
+                background-color: lightgray;
+                color: darkblue;
+            }
+            .form-control:focus{
+                background-color: lightgray;
+                color: darkblue;
+                box-shadow: 1px 1px 1px royalblue inset, 0px 0px 4px darkblue; 
+                -webkit-box-shadow: 0px 0px 4px royalblue inset, 0px 0px 4px darkblue;
+            } 
             .range-cust::-webkit-slider-thumb {
                 background: royalblue;
             }
@@ -65,7 +78,7 @@
                                                                 <div class="col-md-6">
 									<label class="form-label">Profile summary</label>
                                                                         <p class="form-label text-secondary small">Write a brief summary of your previous work related to the current position you want to apply for, your best achievements, skills, qualities,...</p>
-                                                                        <textarea name="summary" rows="5" cols="60"></textarea>
+                                                                        <textarea class="form-control" name="summary" rows="5" cols="60"></textarea>
 								</div>
                                                                 <div class="col-md-6">
 									<label class="form-label">Address</label>
@@ -94,9 +107,9 @@
 									<label class="form-label">End date</label>
 									<input type="date" class="form-control" name="jobenddate">
 								</div>
-                                                                <div class="col-md-6">
+                                                                <div class="col-md-12">
 									<label class="form-label">Description</label>
-                                                                        <textarea name="summary" rows="5" cols="60"></textarea>
+                                                                        <textarea class="form-control" name="summary" rows="5" cols="60"></textarea>
 								</div>
 							</div>
 						</div>
@@ -121,9 +134,9 @@
 									<label class="form-label">End date</label>
 									<input type="date" class="form-control" name="schoolenddate">
 								</div>
-                                                                <div class="col-md-6">
+                                                                <div class="col-md-12">
 									<label class="form-label">Description</label>
-                                                                        <textarea name="summary" rows="5" cols="60"></textarea>
+                                                                        <textarea class="form-control" name="summary" rows="5" cols="60"></textarea>
 								</div>
 							</div>
 						</div>
