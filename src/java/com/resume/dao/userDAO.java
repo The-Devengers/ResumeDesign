@@ -4,6 +4,7 @@
  */
 package com.resume.dao;
 
+import com.resume.UserService;
 import com.resume.dbconnection.db;
 import com.resume.dto.User;
 import java.sql.Connection;
@@ -15,7 +16,7 @@ import java.sql.SQLException;
  *
  * @author User
  */
-public class userDAO {
+public class userDAO implements UserService {
 
     private Connection con;
     private String query;
@@ -30,6 +31,7 @@ public class userDAO {
 
     }
 
+    @Override
     public User CreateUser(String newname, String newpass, String newemail, String gender) {
         User newUser = null;
         try {
@@ -40,7 +42,7 @@ public class userDAO {
             prep.setString(3, newemail);
             prep.setString(4, gender);
             prep.executeUpdate();
-            newUser = new User();
+            newUser = new User(newname, newpass, newemail, gender);
 
         } catch (SQLException ex) {
             System.out.println(ex);

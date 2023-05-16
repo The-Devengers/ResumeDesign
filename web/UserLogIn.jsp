@@ -16,7 +16,7 @@
 
                       <div class="mb-md-5 mt-md-4 pb-5">
 
-                        <h2 class="fw-bold mb-2 text-uppercase">Log in</h2>
+                        <h2 class="fw-bold mb-2 text-uppercase">LOG IN</h2>
                         <br>
                         <form>
                         <div class="form-outline form-white mb-4">
@@ -33,11 +33,11 @@
                         </form>
                       </div>
                         <div>
-                            <p class="mb-0">Not a member?<a href="UserCreate.jsp" class="text-white-50 fw-bold">Create account</a></p>
+                            <p class="mb-0">Not a member? <a href="UserCreate.jsp" class="text-white-50 ">Create account</a></p>
                         </div>
                         <br>
                         <div>
-                            <p class="mb-0">Admin login?<a href="AdminLogIn.jsp" class="text-white-50 fw-bold">Create account</a></p>
+                            <p class="mb-0">Admin login? <a href="AdminLogIn.jsp" class="text-white-50 ">Admin</a></p>
                         </div>
                     </div>
                   </div>

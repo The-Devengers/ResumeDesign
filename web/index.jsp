@@ -17,7 +17,7 @@
 
     <body>
         <div>
-            <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light">
+            <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light mt-2 mx-4">
                 <div class="container-fluid">
                     <a class="navbar-brand" href="#">APLY.</a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -53,10 +53,36 @@
 
                         </ul>
 
-                        <a class="nav-link active" href="http://localhost:8080/ResumeDesign/UserLogIn.jsp"> My Account</a>
+                        <% User user = (User) session.getAttribute("user");
+                            if (user != null) {
 
+                        %>
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="navbar-nav ms-auto me-5 mb-3 mb-lg-0">
+
+
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        Hi, <%= user.getUsername()%>
+                                    </a>
+                                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                        <li><a class="dropdown-item" href="#">View profile</a></li>
+                                        <li><a class="dropdown-item" href="#">Setting</a></li>
+
+
+                                        <li><hr class="dropdown-divider"></li>
+                                        <li><a class="dropdown-item text-danger bold" id="signout" href="#">Sign out</a></li>
+                                    </ul>
+                                </li>
+
+                        </div>
+
+                        <%    } else {
+                        %> <a class="nav-link active" href="http://localhost:8080/ResumeDesign/UserLogIn.jsp">Create account</a> <% }%>
                     </div>
+
                 </div>
+
             </nav>
 
         </div>
@@ -73,16 +99,18 @@
         </div>
 
 
-    <script>
-        // Get a reference to the button element
-        var button = document.getElementById('buildbtn');
+        <script>
+            // Get a reference to the button element
+            var button = document.getElementById('buildbtn');
 
-        // Add a click event listener to the button
-        button.addEventListener('click', function () {
-            // Redirect to the new .jsp page
-            window.location.href = 'http://localhost:8080/ResumeDesign/UserLogIn.jsp';
-        });
-    </script>
+            // Add a click event listener to the button
+            button.addEventListener('click', function () {
+                // Redirect to the new .jsp page
+                window.location.href = 'http://localhost:8080/ResumeDesign/UserLogIn.jsp';
+            });
+            
+            
+        </script>
     </body>
 
 

@@ -79,9 +79,7 @@ public class UserLogIn extends HttpServlet {
                     String password = request.getParameter("newpass");
                     String email = request.getParameter("newemail");
                     String gender = request.getParameter("gender");
-                    User user = userO.CreateUser(username, password, email,gender);
-                    System.out.println("Add to db scfly");                    
-                    
+                    User user = userO.CreateUser(username, password, email, gender);
                     HttpSession session = request.getSession();
                     session.setAttribute("user", user);
                     response.sendRedirect("http://localhost:8080/ResumeDesign/index.jsp");

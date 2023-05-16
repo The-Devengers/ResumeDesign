@@ -12,13 +12,14 @@ package com.resume.dto;
 public class User {
     private String username;
     private String password;
-
+    private String gender;
     private String email;
 
-    public User(String username, String password, String email) {
+    public User(String username, String password, String email, String gender) {
         this.username = username;
         this.password = password;
         this.email = email;
+        this.gender = gender;
     }
 
     public User() {
