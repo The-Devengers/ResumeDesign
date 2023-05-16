@@ -18,7 +18,7 @@
 
                         <h2 class="fw-bold mb-2 text-uppercase">Sign up</h2>
                         <p class="text-white-50 mb-5">Please fill in the below form to sign up</p>
-                        <form>
+                        <form action="<%= request.getContextPath()%>/UserLogIn" method="post">
                         <div class="form-outline form-white mb-4">
                           <label class="form-label">Enter username</label>
                           <input type="text" class="form-control form-control-lg" name="newname" required>
@@ -49,6 +49,7 @@
                         
                         <input class="btn btn-outline-light btn-lg px-5" type="submit" value="Sign up">
                         </form>
+                        
                       </div>
                         <div>
                             <p class="mb-0">Already a member?<a href="UserLogIn.jsp" class="text-white-50 fw-bold">Sign in</a></p>
