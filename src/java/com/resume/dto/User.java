@@ -29,9 +29,9 @@ public class User {
     public String toString() {
         return "User{" + "username=" + username + ", password=" + password + ", email=" + email + '}';
     }
-
-
-
+    
+    
+    
     public String getUsername() {
         return username;
     }
@@ -55,6 +55,14 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 
 
