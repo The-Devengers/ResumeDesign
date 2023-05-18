@@ -58,9 +58,11 @@
                         </ul>
 
                         <% 
-                            String name = request.getParameter("name");
+                            String username = request.getParameter("name");
                             String email = request.getParameter("email");
                             String gender = request.getParameter("gender");
+                            String name = request.getParameter("fullname");
+                            String address = request.getParameter("address");
                         %>
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul class="navbar-nav ms-auto me-5 mb-3 mb-lg-0">
@@ -68,10 +70,10 @@
 
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                        Hi, <%= name%>
+                                        Hi, <%= username%>
                                     </a>
                                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                        <li><a class="dropdown-item" href="UserProfile.jsp?name=<%= name%>&email=<%= email%>&gender=<%= gender%>">View profile</a></li>
+                                        <li><a class="dropdown-item" href="UserProfile.jsp?name=<%= username%>&email=<%= email%>&gender=<%= gender%>">View profile</a></li>
                                         <li><a class="dropdown-item" href="">Setting</a></li>
 
 
@@ -89,27 +91,42 @@
   <div class="container py-5">
 
     <div class="row ">
-      <div class="col-lg-4">
-        <div class="card mb-4">
-          <div class="card-body text-center background" >
-            <h5 class="my-3">John Smith</h5>
-            <p class="text-muted mb-1"><%= gender%></p>
-            <p class="text-muted mb-4">Bay Area, San Francisco, CA</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-8">
+      <div class="col-lg-12">
         <div class="card mb-4">
           <div class="card-body background">
+             <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">User Name</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0"><%= username%></p>
+              </div>
+            </div>
+              <hr>
             <div class="row">
               <div class="col-sm-3">
                 <p class="mb-0">Full Name</p>
               </div>
               <div class="col-sm-9">
-                <p class="text-muted mb-0">Johnatan Smith</p>
+                  <%
+                      if (name != null){
+                      %>
+                <p class="text-muted mb-0"><%= name%></p>     
+                    <%  }else {%>
+                <p class="text-muted mb-0">Full name</p>    
+                   <% }%>
               </div>
             </div>
             <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Gender</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0"><%= gender%></p>
+              </div>
+            </div>
+              <hr>
             <div class="row">
               <div class="col-sm-3">
                 <p class="mb-0">Email</p>
@@ -133,7 +150,14 @@
                 <p class="mb-0">Address</p>
               </div>
               <div class="col-sm-9">
-                <p class="text-muted mb-0">Bay Area, San Francisco, CA</p>
+                  <%
+                      if (address != null){
+                      %>
+                <p class="text-muted mb-0"><%= address%></p>      
+                    <%  }else {%>
+                <p class="text-muted mb-0">Address</p>    
+                   <% }%>
+                
               </div>
             </div>
           </div>
