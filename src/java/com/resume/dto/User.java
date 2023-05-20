@@ -36,7 +36,6 @@ public class User {
         return "User{" + "username=" + username + ", password=" + password + ", email=" + email + '}';
     }
 
-
     public  int getStatus() {
         return status;
     }
@@ -44,6 +43,7 @@ public class User {
     public  void setStatus(int status) {
         this.status = status;
     }
+
 
     public String getUsername() {
         return username;
@@ -68,6 +68,14 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 
 
