@@ -1,4 +1,4 @@
-package com.resume;
+package com.resume.service;
 
 import com.resume.dto.User;
 
