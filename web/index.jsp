@@ -15,7 +15,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
-    <body>
+    <body class="p-1">
         <div>
             <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light mt-2 mx-4">
                 <div class="container-fluid">
