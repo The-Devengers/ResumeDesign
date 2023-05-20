@@ -4,7 +4,7 @@
  */
 package com.resume.dao;
 
-import com.resume.UserService;
+import com.resume.service.UserService;
 import com.resume.dto.User;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
