@@ -14,6 +14,12 @@ public class User {
     private String password;
     private String gender;
     private String email;
+    private  int status;
+
+    
+   
+    private  final int LOGGED_IN = 1;
+    private  final int LOGGED_OUT = 0;
 
     public User(String username, String password, String email, String gender) {
         this.username = username;
@@ -31,6 +37,13 @@ public class User {
     }
 
 
+    public  int getStatus() {
+        return status;
+    }
+
+    public  void setStatus(int status) {
+        this.status = status;
+    }
 
     public String getUsername() {
         return username;

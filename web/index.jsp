@@ -53,8 +53,9 @@
 
                         </ul>
 
-                        <% User user = (User) session.getAttribute("user");
-                            if (user != null) {
+                        <%  try {
+                                User user = (User) session.getAttribute("user");
+                                if (user != null) {
 
                         %>
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -77,8 +78,12 @@
 
                         </div>
 
-                        <%    } else {
-                        %> <a class="nav-link active" href="http://localhost:8080/ResumeDesign/UserLogIn.jsp">Create account</a> <% }%>
+                        <%   } else {
+                        %> <a class="nav-link active" href="http://localhost:8080/ResumeDesign/UserCreate.jsp">Create account</a>
+                        <a class="btn btn-outline-warning" style="color: black;" href="http://localhost:8080/ResumeDesign/UserLogIn.jsp">Sign In</a> 
+                        <% }
+                            } catch (Exception ex) {
+                            }%>
                     </div>
 
                 </div>
@@ -94,7 +99,25 @@
 
             </div>
             <div class="col-lg text-center">
-                <button id="buildbtn" type="button" class="btn btn-primary btn-lg" >Build my CV</button>
+                <button id="buildbtn" type="button" class="btn btn-primary btn-lg px-5 py-3" style="font-weight: bolder;" >Build My CV</button>
+            </div>
+
+            <div class="container-fluid py-5 d-flex justify-content-evenly">
+                <button type="button" class="btn btn-outline-primary">
+                    <strong>PROFESSIONAL</strong>
+                </button>
+
+                <button type="button" class="btn btn-outline-primary">
+                    <strong>MODERN</strong>
+                </button>
+
+                <button type="button" class="btn btn-outline-primary">
+                    <strong>SIMPLE</strong>
+                </button>
+
+                <button type="button" class="btn btn-outline-primary">
+                    <strong>CREATIVE</strong>
+                </button>
             </div>
         </div>
 
@@ -108,8 +131,8 @@
                 // Redirect to the new .jsp page
                 window.location.href = 'http://localhost:8080/ResumeDesign/UserLogIn.jsp';
             });
-            
-            
+
+
         </script>
     </body>
 

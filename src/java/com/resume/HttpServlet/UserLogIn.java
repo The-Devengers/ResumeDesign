@@ -12,6 +12,7 @@ import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -70,11 +71,12 @@ public class UserLogIn extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String referer = request.getHeader("referer");
+        userDAO userO;
+        try {
+            userO = new userDAO(db.getCon());
+            switch (referer) {
+                case "http://localhost:8080/ResumeDesign/UserCreate.jsp": {
 
-        switch (referer) {
-            case "http://localhost:8080/ResumeDesign/UserCreate.jsp": {
-                try {
-                    userDAO userO = new userDAO(db.getCon());
                     String username = request.getParameter("newname");
                     String password = request.getParameter("newpass");
                     String email = request.getParameter("newemail");
@@ -83,12 +85,24 @@ public class UserLogIn extends HttpServlet {
                     HttpSession session = request.getSession();
                     session.setAttribute("user", user);
                     response.sendRedirect("http://localhost:8080/ResumeDesign/index.jsp");
-                    
-                } catch (ClassNotFoundException | SQLException ex) {
-                    Logger.getLogger(UserLogIn.class.getName()).log(Level.SEVERE, null, ex);
+                    return;
+                }
+                case "http://localhost:8080/ResumeDesign/UserLogIn.jsp": {
+                    String username = request.getParameter("name");
+                    String password = request.getParameter("pass");
+                    User loggedUser = userO.verifyUser(username, password);
+
+                    if (loggedUser != null) {
+                        if (loggedUser.getStatus() == 1) {
+                            request.setAttribute("user", loggedUser);
+                            RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
+                            rd.forward(request, response);
+                        }
+                    }
                 }
             }
-
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(UserLogIn.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }

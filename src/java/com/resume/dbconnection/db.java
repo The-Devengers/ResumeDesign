@@ -18,7 +18,6 @@ package com.resume.dbconnection;
  * @author User
  */
 
-import java.sql.*;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
