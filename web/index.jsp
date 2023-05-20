@@ -72,7 +72,7 @@
 
 
                                         <li><hr class="dropdown-divider"></li>
-                                        <li><a class="dropdown-item text-danger bold" id="signout" href="#">Sign out</a></li>
+                                        <li><a class="dropdown-item text-danger bold" id="signout" href="http://localhost:8080/ResumeDesign/Logout.jsp">Sign out</a></li>
                                     </ul>
                                 </li>
 

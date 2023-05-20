@@ -58,8 +58,8 @@ public class userDAO implements UserService {
             prep.setString(1, name);
             prep.setString(2, pass);
             rs = prep.executeQuery();
+            oldUser = new User();
             if (rs.next()) {
-                oldUser = new User();
                 oldUser.setUsername(rs.getString("username"));
                 oldUser.setPassword(rs.getString("password"));
                 oldUser.setStatus(1);

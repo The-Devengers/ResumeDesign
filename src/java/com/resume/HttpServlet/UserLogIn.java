@@ -89,14 +89,17 @@ public class UserLogIn extends HttpServlet {
                 case "http://localhost:8080/ResumeDesign/UserLogIn.jsp": {
                     String username = request.getParameter("name");
                     String password = request.getParameter("pass");
+
                     User loggedUser = userO.verifyUser(username, password);
 
-                    if (loggedUser != null) {
-                        if (loggedUser.getStatus() == 1) {
-                            request.setAttribute("user", loggedUser);
-                            RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
-                            rd.forward(request, response);
-                        }
+                    System.out.println(loggedUser.getUsername());
+                    System.out.println(loggedUser.getPassword());
+                    System.out.println(loggedUser.getStatus());
+
+                    if (loggedUser.getStatus() == 1) {
+                        HttpSession session = request.getSession();
+                        session.setAttribute("user", loggedUser);
+                        response.sendRedirect("http://localhost:8080/ResumeDesign/index.jsp");
                     }
                 }
             }
