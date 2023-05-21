@@ -92,16 +92,18 @@ public class UserLogIn extends HttpServlet {
 
                     User loggedUser = userO.verifyUser(username, password);
 
-                    System.out.println(loggedUser.getUsername());
-                    System.out.println(loggedUser.getPassword());
-                    System.out.println(loggedUser.getStatus());
-
+                    HttpSession session = request.getSession();
                     if (loggedUser.getStatus() == 1) {
-                        HttpSession session = request.getSession();
+
                         session.setAttribute("user", loggedUser);
                         response.sendRedirect("http://localhost:8080/ResumeDesign/index.jsp");
+                    } else if (loggedUser.getStatus() == 0) {
+                        session.setAttribute("message", "Wrong username or password. Please try again");
+                        response.sendRedirect("http://localhost:8080/ResumeDesign/UserLogIn.jsp");
                     }
+                    
                 }
+
             }
         } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(UserLogIn.class.getName()).log(Level.SEVERE, null, ex);

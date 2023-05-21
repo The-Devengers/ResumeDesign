@@ -63,9 +63,11 @@ public class userDAO implements UserService {
                 oldUser.setUsername(rs.getString("username"));
                 oldUser.setPassword(rs.getString("password"));
                 oldUser.setStatus(1);
-            }
+            } else {
+                oldUser.setStatus(0);
+        }
         } catch (SQLException ex) {
-            System.out.println(ex);
+            ex.getMessage();
         }
 
         return oldUser;

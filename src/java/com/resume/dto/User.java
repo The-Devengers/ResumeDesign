@@ -19,7 +19,7 @@ public class User {
     
    
     private  final int LOGGED_IN = 1;
-    private  final int LOGGED_OUT = 0;
+    private final int INVALID = 0;
 
     public User(String username, String password, String email, String gender) {
         this.username = username;

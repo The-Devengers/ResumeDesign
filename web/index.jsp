@@ -80,7 +80,7 @@
 
                         <%   } else {
                         %> <a class="nav-link active" href="http://localhost:8080/ResumeDesign/UserCreate.jsp">Create account</a>
-                        <a class="btn btn-outline-warning" style="color: black;" href="http://localhost:8080/ResumeDesign/UserLogIn.jsp">Sign In</a> 
+                        <a id="signin" class="btn btn-outline-warning" style="color: black;" href="http://localhost:8080/ResumeDesign/UserLogIn.jsp">Sign In</a> 
                         <% }
                             } catch (Exception ex) {
                             }%>
@@ -124,12 +124,18 @@
 
         <script>
             // Get a reference to the button element
-            var button = document.getElementById('buildbtn');
+            var buildCV = document.getElementById('buildbtn');
 
             // Add a click event listener to the button
-            button.addEventListener('click', function () {
+            buildCV.addEventListener('click', function () {
+                const signin = document.getElementById('signin');
+
+                if (signin === null) {
+                    window.location.href = 'http://localhost:8080/ResumeDesign/ResumeForm.jsp?name=';
+                } else {
+                    window.location.href = 'http://localhost:8080/ResumeDesign/UserLogIn.jsp';
+                }
                 // Redirect to the new .jsp page
-                window.location.href = 'http://localhost:8080/ResumeDesign/UserLogIn.jsp';
             });
 
 

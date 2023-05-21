@@ -7,7 +7,7 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     </head>
     <body class="p-1 mb-2 bg-light text-white">
-        <body class="p-1 mb-2 bg-light text-white">
+    <body class="p-1 mb-2 bg-light text-white">
         <div>
             <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light mt-2 mx-4">
                 <div class="container-fluid">
@@ -72,9 +72,15 @@
                                             <label class="form-label">Password</label>
                                             <input type="password" class="form-control form-control-lg" name="pass" required>
                                         </div>
-
+                                        <% String message = (String) session.getAttribute("message");
+                                            if (message != null) {
+                                            out.println("<p style=\"color: red;\">" + message + "</p>");
+                                            session.removeAttribute("message");
+    }%>
                                         <input class="btn btn-outline-light btn-lg px-5" type="submit" value="Sign in">
                                     </form>
+
+                                    
                                 </div>
                                 <div>
                                     <p class="mb-0">Not a member? <a href="UserCreate.jsp" class="text-white-50 ">Create account</a></p>

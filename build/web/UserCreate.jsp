@@ -61,21 +61,37 @@
 
                                     <h2 class="fw-bold mb-2 text-uppercase">Sign up</h2>
                                     <p class="text-white-50 mb-5">Please fill in the below form to sign up</p>
-                                    <form action="<%= request.getContextPath()%>/UserLogIn" method="post">
+                                    <form id="form" action="<%= request.getContextPath()%>/UserLogIn" method="post" novalidate>
                                         <div class="form-outline form-white mb-4">
-                                            <label class="form-label">Enter username</label>
-                                            <input type="text" class="form-control form-control-lg" name="newname" required>
+                                            <label class="form-label">Username</label>
+                                            <input id="username" type="text" class="form-control form-control-lg" name="newname" >
+                                            <div class="usernameMessage"></div>
                                         </div>
 
                                         <div class="form-outline form-white mb-4">
-                                            <label class="form-label">Enter password</label>
-                                            <input type="password" class="form-control form-control-lg" name="newpass" required>
+                                            <label class="form-label">Email</label>
+                                            <input id="email" type="email" class="form-control form-control-lg" name="newemail" >
+                                            <div class="message"></div>
                                         </div>
 
                                         <div class="form-outline form-white mb-4">
-                                            <label class="form-label">Enter email</label>
-                                            <input type="email" class="form-control form-control-lg" name="newemail" required>
+                                            <label class="form-label">Password</label>
+                                            <input id="password" type="password" class="form-control form-control-lg" name="newpass" >
+                                            <div class="message"></div>
+                                            <ul class="mt-4">
+                                                <li>Should begin with an uppercase</li>
+                                                <li>Should have at least 8 characters</li>
+                                                <li>Should have a special character</li>
+                                            </ul>
                                         </div>
+
+                                        <div class="form-outline form-white mb-4">
+                                            <label class="form-label">Re-enter password</label>
+                                            <input id="password2" type="password" class="form-control form-control-lg" name="password2" >
+                                            <div class="message"></div>
+                                        </div>
+
+
 
                                         <div class="form-outline form-white mb-4">
                                             <div class="btn-group me-2" role="group" aria-label="First group">
@@ -104,5 +120,131 @@
                 </div>
             </div>
         </section>
+
+        <script>
+            const form = document.getElementById('form');
+            const username = document.getElementById('username');
+            const email = document.getElementById('email');
+            const password = document.getElementById('password');
+            const password2 = document.getElementById('password2');
+
+            const isValidEmail = email => {
+                const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+                return re.test(String(email).toLowerCase());
+            };
+
+            form.addEventListener('submit', e => {
+                e.preventDefault();
+                validateForm();
+            });
+
+            const setError = (element, message) => {
+                const errorDisplay = element.nextElementSibling;
+
+                errorDisplay.innerText = message;
+                errorDisplay.style.color = 'red';
+
+                element.parentElement.classList.add('message');
+                element.parentElement.classList.remove('success');
+            };
+
+            const setSuccess = (element) => {
+                const successDisplay = element.nextElementSibling;
+
+                successDisplay.innerText = 'Valid';
+                successDisplay.style.color = 'cyan';
+
+                element.parentElement.classList.add('success');
+                element.parentElement.classList.remove('message');
+            };
+
+
+
+            // Encryption function
+            const encrypt = value => {
+                const encoder = new TextEncoder();
+                const data = encoder.encode(value);
+                const encodedValue = window.btoa(String.fromCharCode.apply(null, data));
+                return encodedValue;
+            };
+
+            // Decryption function
+            const decrypt = encodedValue => {
+                const decodedData = window.atob(encodedValue);
+                const decoder = new TextDecoder();
+                const decodedValue = decoder.decode(new Uint8Array(Array.from(decodedData).map(c => c.charCodeAt(0))));
+                return decodedValue;
+            };
+
+            const storeCookie = (cname, cvalue) => {
+                document.cookie = cname + "=" + encrypt(cvalue);
+                +";expires=24*24*60";
+            };
+
+            const validateForm = (e) => {
+
+                const usernameValue = username.value.trim();
+                const emailValue = email.value.trim();
+                const passwordValue = password.value.trim();
+                const password2Value = password2.value.trim();
+
+
+
+                if (usernameValue === '') {
+                    setError(username, 'Username is required');
+                    e.preventDefault();
+                } else {
+                    setSuccess(username);
+                    storeCookie('username', usernameValue);
+                }
+
+                if (emailValue === '') {
+                    setError(email, 'Email is required');
+
+                } else if (!isValidEmail(emailValue)) {
+                    setError(email, 'Provide a valid email address');
+
+                } else {
+                    setSuccess(email);
+                    storeCookie('email', emailValue);
+                }
+
+                if (passwordValue === '') {
+                    setError(password, 'Password is required');
+
+                } else if (passwordValue.length < 8) {
+                    setError(password, 'Password must be at least 8 characters');
+
+                } else if (!/[A-Z]/.test(passwordValue)) {
+                    setError(password, 'Password must start with an uppercase letter');
+
+                } else if (!/[!@#$%^&*]/.test(passwordValue)) {
+                    setError(password, 'Password must contain a special character');
+
+                } else {
+                    setSuccess(password);
+                }
+
+                if (password2Value === '') {
+                    setError(password2, 'Please confirm your password');
+
+                } else if (password2Value !== passwordValue) {
+                    setError(password2, "Passwords don't match");
+
+                } else {
+                    setSuccess(password2);
+                    if (passwordValue.length >= 8) {
+                        storeCookie('password', passwordValue);
+                    } else {
+                        setError(password, 'Password must be at least 8 character.');
+
+                    }
+
+                }
+            };
+
+
+
+        </script>
     </body>
 </html>
