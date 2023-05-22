@@ -80,7 +80,10 @@ public class UserLogIn extends HttpServlet {
                     String password = request.getParameter("newpass");
                     String email = request.getParameter("newemail");
                     String gender = request.getParameter("gender");
-                    User user = userO.CreateUser(username, password, email, gender);
+                    String fullname = request.getParameter("newfullname");
+                    String address = request.getParameter("newaddress");
+                    String phone = request.getParameter("newphone");
+                    User user = userO.CreateUser(username, password, email, gender, fullname, phone, address);
                     HttpSession session = request.getSession();
                     session.setAttribute("user", user);
                     response.sendRedirect("http://localhost:8080/ResumeDesign/index.jsp");

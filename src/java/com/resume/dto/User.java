@@ -14,18 +14,24 @@ public class User {
     private String password;
     private String gender;
     private String email;
-    private  int status;
+    private String fullname;
+    private String phone;
+    private String address;
+    private int status;
 
     
    
     private  final int LOGGED_IN = 1;
     private final int INVALID = 0;
 
-    public User(String username, String password, String email, String gender) {
+    public User(String username, String password, String email, String gender, String fullname, String phone, String address) {
         this.username = username;
         this.password = password;
-        this.email = email;
         this.gender = gender;
+        this.email = email;
+        this.fullname = fullname;
+        this.phone = phone;
+        this.address = address;
     }
 
     public User() {
@@ -33,7 +39,7 @@ public class User {
 
     @Override
     public String toString() {
-        return "User{" + "username=" + username + ", password=" + password + ", email=" + email + '}';
+        return "User{" + "username=" + username + ", password=" + password + ", gender=" + gender + ", email=" + email + ", fullname=" + fullname + ", phone=" + phone + ", address=" + address + ", status=" + status + ", LOGGED_IN=" + LOGGED_IN + ", INVALID=" + INVALID + '}';
     }
 
     public  int getStatus() {
@@ -76,6 +82,30 @@ public class User {
 
     public void setGender(String gender) {
         this.gender = gender;
+    }
+
+    public String getFullname() {
+        return fullname;
+    }
+
+    public void setFullname(String fullname) {
+        this.fullname = fullname;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 
 

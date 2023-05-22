@@ -12,6 +12,6 @@ import com.resume.dto.User;
  * @author User
  */
 public interface UserService {
-    public User CreateUser(String newname, String newpass, String newemail, String gender);
+    public User CreateUser(String newname, String newpass, String newemail, String gender, String newfullname, String newphone, String newaddress);
     public User verifyUser(String name, String pass);
 }

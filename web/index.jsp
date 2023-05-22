@@ -67,7 +67,7 @@
                                         Hi, <%= user.getUsername()%>
                                     </a>
                                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                        <li><a class="dropdown-item" href="UserProfile.jsp?name=<%= user.getUsername()%>&email=<%= user.getEmail()%>&gender=<%= user.getGender()%>">View profile</a></li>
+                                        <li><a class="dropdown-item" href="UserProfile.jsp">View profile</a></li>
                                         <li><a class="dropdown-item" href="">Setting</a></li>
 
 

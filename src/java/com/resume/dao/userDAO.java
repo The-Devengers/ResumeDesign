@@ -31,17 +31,20 @@ public class userDAO implements UserService {
     }
 
     @Override
-    public User CreateUser(String newname, String newpass, String newemail, String gender) {
+    public User CreateUser(String newname, String newpass, String newemail, String gender, String newfullname, String newphone, String newaddress) {
         User newUser = null;
         try {
-            query = "INSERT INTO user (username, password, email, gender) VALUES (?,?,?,?);";
+            query = "INSERT INTO user (username, password, email, gender, fullname, phone, address) VALUES (?,?,?,?,?,?,?);";
             prep = this.con.prepareStatement(query);
             prep.setString(1, newname);
             prep.setString(2, newpass);
             prep.setString(3, newemail);
             prep.setString(4, gender);
+            prep.setString(5, newfullname);
+            prep.setString(6, newphone);
+            prep.setString(7, newaddress);
             prep.executeUpdate();
-            newUser = new User(newname, newpass, newemail, gender);
+            newUser = new User(newname, newpass, newemail, gender, newfullname, newphone, newaddress);
             newUser.setStatus(1);
         } catch (SQLException ex) {
             ex.getMessage();

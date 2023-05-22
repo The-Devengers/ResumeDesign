@@ -90,6 +90,24 @@
                                             <input id="password2" type="password" class="form-control form-control-lg" name="password2" >
                                             <div class="message"></div>
                                         </div>
+                                        
+                                        <div class="form-outline form-white mb-4">
+                                            <label class="form-label">Full name</label>
+                                            <input id="fullname" type="text" class="form-control form-control-lg" name="newfullname" >
+                                            <div class="message"></div>
+                                        </div>
+                                        
+                                        <div class="form-outline form-white mb-4">
+                                            <label class="form-label">Address</label>
+                                            <input id="address" type="text" class="form-control form-control-lg" name="newaddress" >
+                                            <div class="message"></div>
+                                        </div>
+                                        
+                                        <div class="form-outline form-white mb-4">
+                                            <label class="form-label">Phone number</label>
+                                            <input id="phone" type="text" class="form-control form-control-lg" name="newphone" >
+                                            <div class="message"></div>
+                                        </div>
 
 
 
@@ -127,6 +145,9 @@
             const email = document.getElementById('email');
             const password = document.getElementById('password');
             const password2 = document.getElementById('password2');
+            const fullname = document.getElementById('fullname');
+            const address = document.getElementById('address');
+            const phone = document.getElementById('phone');
 
             const isValidEmail = email => {
                 const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -180,6 +201,11 @@
                 document.cookie = cname + "=" + encrypt(cvalue);
                 +";expires=24*24*60";
             };
+            
+            const isValidPhone = phone => {
+                const phonenum = /^\d{10}$/;
+                return phonenum.test(String(phone));
+            };
 
             const validateForm = (e) => {
 
@@ -187,6 +213,9 @@
                 const emailValue = email.value.trim();
                 const passwordValue = password.value.trim();
                 const password2Value = password2.value.trim();
+                const fullnameValue = fullname.value.trim();
+                const addressValue = address.value.trim();
+                const phoneValue = phone.value.trim();
 
 
 
@@ -240,6 +269,33 @@
 
                     }
 
+                }
+                
+                if (fullnameValue === '') {
+                    setError(fullname, 'Full name is required');
+                    e.preventDefault();
+                } else {
+                    setSuccess(fullname);
+                    storeCookie('fullname', fullnameValue);
+                }
+                
+                if (addressValue === '') {
+                    setError(address, 'Address is required');
+                    e.preventDefault();
+                } else {
+                    setSuccess(address);
+                    storeCookie('address', addressValue);
+                }
+                
+                if (phoneValue === '') {
+                    setError(phone, 'Phone number is required');
+                    e.preventDefault();
+                } else if (!isValidPhone(phoneValue)) {
+                    setError(phone, 'Provide a valid phone number');
+
+                } else {
+                    setSuccess(phone);
+                    storeCookie('phone', phoneValue);
                 }
             };
 
