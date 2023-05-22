@@ -1,3 +1,9 @@
+<%@page import="java.sql.DriverManager"%>
+<%@page import="java.sql.Statement"%>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.PreparedStatement"%>
+<%@page import="java.sql.Connection"%>
+<%@page import="com.resume.dbconnection.db"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -138,7 +144,7 @@
                 </div>
             </div>
         </section>
-
+               
         <script>
             const form = document.getElementById('form');
             const username = document.getElementById('username');
@@ -206,7 +212,75 @@
                 const phonenum = /^\d{10}$/;
                 return phonenum.test(String(phone));
             };
-
+            const ifUserNameExist = username =>{
+                const usernamelist = [];
+                <% try{
+                        Connection con= db.getCon();
+                        Statement st=con.createStatement();
+                        String query="select username from user";
+                        ResultSet rs =st.executeQuery(query);
+                        while(rs.next()){%>
+                            usernamelist.push("<%=rs.getString("username")%>");
+                            <% }%>
+                        for (var i = 0; i< usernamelist.length; i++){
+                                if (String(username) === usernamelist[i]){
+                                    return false;
+                                } else {
+                                    return true;
+                                }
+                            }
+                            <%
+                    }catch(Exception e){
+                    }
+                %>
+            };
+            
+            const ifEmailExist = email =>{
+                const emaillist = [];
+                <% try{
+                        Connection con= db.getCon();
+                        Statement st=con.createStatement();
+                        String query="select email from user";
+                        ResultSet rs =st.executeQuery(query);
+                        while(rs.next()){%>
+                            emaillist.push("<%=rs.getString("email")%>");
+                            <% } %>
+                        for (var i = 0; i< emaillist.length; i++){
+                                if (String(email) === emaillist[i]){
+                                    return false;
+                                } else {
+                                    return true;
+                                }
+                            }
+                            <%
+                    }catch(Exception e){
+                    }
+                %>
+            };
+             
+            const ifPhoneExist = phone =>{
+                const phonelist = [];
+                <% try{
+                        Connection con= db.getCon();
+                        Statement st=con.createStatement();
+                        String query="select phone from user";
+                        ResultSet rs =st.executeQuery(query);
+                        while(rs.next()){%>
+                            phonelist.push("<%=rs.getString("phone")%>");
+                            <% }%>
+                        for (var i = 0; i< phonelist.length; i++){
+                                if (String(phone) === phonelist[i]){
+                                    return false;
+                                } else {
+                                    return true;
+                                }
+                            }
+                            <%
+                    }catch(Exception e){
+                    }
+                %>
+            };
+            
             const validateForm = (e) => {
 
                 const usernameValue = username.value.trim();
@@ -216,11 +290,14 @@
                 const fullnameValue = fullname.value.trim();
                 const addressValue = address.value.trim();
                 const phoneValue = phone.value.trim();
+                
 
-
-
+                
                 if (usernameValue === '') {
                     setError(username, 'Username is required');
+                    e.preventDefault();
+                } else if (ifUserNameExist(usernameValue) === false){
+                    setError(username, 'Username already exist');
                     e.preventDefault();
                 } else {
                     setSuccess(username);
@@ -233,6 +310,9 @@
                 } else if (!isValidEmail(emailValue)) {
                     setError(email, 'Provide a valid email address');
 
+                } else if (ifEmailExist(emailValue) === false){
+                    setError(email, 'Email already exist');
+                    e.preventDefault();
                 } else {
                     setSuccess(email);
                     storeCookie('email', emailValue);
@@ -292,7 +372,10 @@
                     e.preventDefault();
                 } else if (!isValidPhone(phoneValue)) {
                     setError(phone, 'Provide a valid phone number');
-
+                    e.preventDefault();
+                } else if (ifPhoneExist(phoneValue) === false){
+                    setError(phone, 'Phone number already exist');
+                    e.preventDefault();
                 } else {
                     setSuccess(phone);
                     storeCookie('phone', phoneValue);
