@@ -96,19 +96,19 @@
                                             <input id="password2" type="password" class="form-control form-control-lg" name="password2" >
                                             <div class="message"></div>
                                         </div>
-                                        
+
                                         <div class="form-outline form-white mb-4">
                                             <label class="form-label">Full name</label>
                                             <input id="fullname" type="text" class="form-control form-control-lg" name="newfullname" >
                                             <div class="message"></div>
                                         </div>
-                                        
+
                                         <div class="form-outline form-white mb-4">
                                             <label class="form-label">Address</label>
                                             <input id="address" type="text" class="form-control form-control-lg" name="newaddress" >
                                             <div class="message"></div>
                                         </div>
-                                        
+
                                         <div class="form-outline form-white mb-4">
                                             <label class="form-label">Phone number</label>
                                             <input id="phone" type="text" class="form-control form-control-lg" name="newphone" >
@@ -144,7 +144,7 @@
                 </div>
             </div>
         </section>
-               
+
         <script>
             const form = document.getElementById('form');
             const username = document.getElementById('username');
@@ -162,7 +162,13 @@
 
             form.addEventListener('submit', e => {
                 e.preventDefault();
-                validateForm();
+                
+                var validate = validateForm();
+
+                if (validate) {
+                    form.removeEventListener('submit', e);
+                    form.submit();
+                }
             });
 
             const setError = (element, message) => {
@@ -207,80 +213,80 @@
                 document.cookie = cname + "=" + encrypt(cvalue);
                 +";expires=24*24*60";
             };
-            
+
             const isValidPhone = phone => {
                 const phonenum = /^\d{10}$/;
                 return phonenum.test(String(phone));
             };
-            const ifUserNameExist = username =>{
+            const ifUserNameExist = username => {
                 const usernamelist = [];
-                <% try{
-                        Connection con= db.getCon();
-                        Statement st=con.createStatement();
-                        String query="select username from user";
-                        ResultSet rs =st.executeQuery(query);
-                        while(rs.next()){%>
-                            usernamelist.push("<%=rs.getString("username")%>");
-                            <% }%>
-                        for (var i = 0; i< usernamelist.length; i++){
-                                if (String(username) === usernamelist[i]){
-                                    return false;
-                                } else {
-                                    return true;
-                                }
-                            }
-                            <%
-                    }catch(Exception e){
+            <% try {
+                    Connection con = db.getCon();
+                    Statement st = con.createStatement();
+                    String query = "select username from user";
+                    ResultSet rs = st.executeQuery(query);
+                    while (rs.next()) {%>
+                usernamelist.push("<%=rs.getString("username")%>");
+            <% }%>
+                for (var i = 0; i < usernamelist.length; i++) {
+                    if (String(username) === usernamelist[i]) {
+                        return false;
+                    } else {
+                        return true;
                     }
-                %>
+                }
+            <%
+                } catch (Exception e) {
+                }
+            %>
             };
-            
-            const ifEmailExist = email =>{
+
+            const ifEmailExist = email => {
                 const emaillist = [];
-                <% try{
-                        Connection con= db.getCon();
-                        Statement st=con.createStatement();
-                        String query="select email from user";
-                        ResultSet rs =st.executeQuery(query);
-                        while(rs.next()){%>
-                            emaillist.push("<%=rs.getString("email")%>");
-                            <% } %>
-                        for (var i = 0; i< emaillist.length; i++){
-                                if (String(email) === emaillist[i]){
-                                    return false;
-                                } else {
-                                    return true;
-                                }
-                            }
-                            <%
-                    }catch(Exception e){
+            <% try {
+                    Connection con = db.getCon();
+                    Statement st = con.createStatement();
+                    String query = "select email from user";
+                    ResultSet rs = st.executeQuery(query);
+                    while (rs.next()) {%>
+                emaillist.push("<%=rs.getString("email")%>");
+            <% } %>
+                for (var i = 0; i < emaillist.length; i++) {
+                    if (String(email) === emaillist[i]) {
+                        return false;
+                    } else {
+                        return true;
                     }
-                %>
+                }
+            <%
+                } catch (Exception e) {
+                }
+            %>
             };
-             
-            const ifPhoneExist = phone =>{
+
+            const ifPhoneExist = phone => {
                 const phonelist = [];
-                <% try{
-                        Connection con= db.getCon();
-                        Statement st=con.createStatement();
-                        String query="select phone from user";
-                        ResultSet rs =st.executeQuery(query);
-                        while(rs.next()){%>
-                            phonelist.push("<%=rs.getString("phone")%>");
-                            <% }%>
-                        for (var i = 0; i< phonelist.length; i++){
-                                if (String(phone) === phonelist[i]){
-                                    return false;
-                                } else {
-                                    return true;
-                                }
-                            }
-                            <%
-                    }catch(Exception e){
+            <% try {
+                    Connection con = db.getCon();
+                    Statement st = con.createStatement();
+                    String query = "select phone from user";
+                    ResultSet rs = st.executeQuery(query);
+                    while (rs.next()) {%>
+                phonelist.push("<%=rs.getString("phone")%>");
+            <% }%>
+                for (var i = 0; i < phonelist.length; i++) {
+                    if (String(phone) === phonelist[i]) {
+                        return false;
+                    } else {
+                        return true;
                     }
-                %>
+                }
+            <%
+                } catch (Exception e) {
+                }
+            %>
             };
-            
+
             const validateForm = (e) => {
 
                 const usernameValue = username.value.trim();
@@ -290,15 +296,17 @@
                 const fullnameValue = fullname.value.trim();
                 const addressValue = address.value.trim();
                 const phoneValue = phone.value.trim();
-                
 
-                
+                var valid = false;
+
                 if (usernameValue === '') {
                     setError(username, 'Username is required');
-                    e.preventDefault();
-                } else if (ifUserNameExist(usernameValue) === false){
+                    var valid = false;
+
+                } else if (ifUserNameExist(usernameValue) === false) {
                     setError(username, 'Username already exist');
-                    e.preventDefault();
+                    var valid = false;
+
                 } else {
                     setSuccess(username);
                     storeCookie('username', usernameValue);
@@ -306,13 +314,16 @@
 
                 if (emailValue === '') {
                     setError(email, 'Email is required');
+                    var valid = false;
 
                 } else if (!isValidEmail(emailValue)) {
                     setError(email, 'Provide a valid email address');
+                    var valid = false;
 
-                } else if (ifEmailExist(emailValue) === false){
+                } else if (ifEmailExist(emailValue) === false) {
                     setError(email, 'Email already exist');
-                    e.preventDefault();
+                    var valid = false;
+
                 } else {
                     setSuccess(email);
                     storeCookie('email', emailValue);
@@ -320,15 +331,19 @@
 
                 if (passwordValue === '') {
                     setError(password, 'Password is required');
+                    var valid = false;
 
                 } else if (passwordValue.length < 8) {
                     setError(password, 'Password must be at least 8 characters');
+                    var valid = false;
 
                 } else if (!/[A-Z]/.test(passwordValue)) {
                     setError(password, 'Password must start with an uppercase letter');
+                    var valid = false;
 
                 } else if (!/[!@#$%^&*]/.test(passwordValue)) {
                     setError(password, 'Password must contain a special character');
+                    var valid = false;
 
                 } else {
                     setSuccess(password);
@@ -336,9 +351,11 @@
 
                 if (password2Value === '') {
                     setError(password2, 'Please confirm your password');
+                    var valid = false;
 
                 } else if (password2Value !== passwordValue) {
                     setError(password2, "Passwords don't match");
+                    var valid = false;
 
                 } else {
                     setSuccess(password2);
@@ -346,39 +363,47 @@
                         storeCookie('password', passwordValue);
                     } else {
                         setError(password, 'Password must be at least 8 character.');
+                        var valid = false;
 
                     }
 
                 }
-                
+
                 if (fullnameValue === '') {
                     setError(fullname, 'Full name is required');
-                    e.preventDefault();
+                    var valid = false;
+
                 } else {
                     setSuccess(fullname);
                     storeCookie('fullname', fullnameValue);
                 }
-                
+
                 if (addressValue === '') {
                     setError(address, 'Address is required');
-                    e.preventDefault();
+                    var valid = false;
+
                 } else {
                     setSuccess(address);
                     storeCookie('address', addressValue);
                 }
-                
+
                 if (phoneValue === '') {
                     setError(phone, 'Phone number is required');
-                    e.preventDefault();
+                    var valid = false;
+
                 } else if (!isValidPhone(phoneValue)) {
                     setError(phone, 'Provide a valid phone number');
-                    e.preventDefault();
-                } else if (ifPhoneExist(phoneValue) === false){
+                    var valid = false;
+
+                } else if (ifPhoneExist(phoneValue) === false) {
                     setError(phone, 'Phone number already exist');
-                    e.preventDefault();
+                    var valid = false;
+
                 } else {
                     setSuccess(phone);
                     storeCookie('phone', phoneValue);
+                    var valid = true;
+                    return valid;
                 }
             };
 

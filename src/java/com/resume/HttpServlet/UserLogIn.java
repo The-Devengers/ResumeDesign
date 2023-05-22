@@ -39,7 +39,7 @@ public class UserLogIn extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-
+            
         }
     }
 
@@ -69,13 +69,17 @@ public class UserLogIn extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
+        response.setContentType("text/html;charset=UTF-8");
+        
         String referer = request.getHeader("referer");
+        
         userDAO userO;
         try {
             userO = new userDAO(db.getCon());
             switch (referer) {
                 case "http://localhost:8080/ResumeDesign/UserCreate.jsp": {
-
+                    
                     String username = request.getParameter("newname");
                     String password = request.getParameter("newpass");
                     String email = request.getParameter("newemail");
@@ -92,12 +96,12 @@ public class UserLogIn extends HttpServlet {
                 case "http://localhost:8080/ResumeDesign/UserLogIn.jsp": {
                     String username = request.getParameter("name");
                     String password = request.getParameter("pass");
-
+                    
                     User loggedUser = userO.verifyUser(username, password);
-
+                    
                     HttpSession session = request.getSession();
                     if (loggedUser.getStatus() == 1) {
-
+                        
                         session.setAttribute("user", loggedUser);
                         response.sendRedirect("http://localhost:8080/ResumeDesign/index.jsp");
                     } else if (loggedUser.getStatus() == 0) {
@@ -106,12 +110,12 @@ public class UserLogIn extends HttpServlet {
                     }
                     
                 }
-
+                
             }
         } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(UserLogIn.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+        
     }
 
     /**
