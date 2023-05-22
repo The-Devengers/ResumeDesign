@@ -7,3 +7,23 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     Author     : User
 */
 
+.editable {
+  cursor: pointer;
+  color: blue;
+  text-decoration: underline;
+  font-size: 0.5rem; /* Adjust the font size as needed */
+}
+
+.editable input:active {
+  outline: none;
+
+}
+
+.editable input {
+  border: none;
+  outline: none;
+  font-size: inherit;
+  color: inherit;
+  background-color: transparent;
+}
+

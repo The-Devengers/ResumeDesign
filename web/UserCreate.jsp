@@ -23,23 +23,6 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
-
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Resume
-                                </a>
-                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <li><a class="dropdown-item" href="#">Professional</a></li>
-                                    <li><a class="dropdown-item" href="#">Modern</a></li>
-                                    <li><a class="dropdown-item" href="#">Simple</a></li>
-                                    <li><a class="dropdown-item" href="#">Creative</a></li>
-
-
-                                    <li><hr class="dropdown-divider"></li>
-                                    <li><a class="dropdown-item" href="#">Examples</a></li>
-                                </ul>
-                            </li>
-
                             <li class="nav-item">
                                 <a class="nav-link active" aria-current="page" href="#">FAQ</a>
                             </li>
@@ -162,7 +145,7 @@
 
             form.addEventListener('submit', e => {
                 e.preventDefault();
-                
+
                 var validate = validateForm();
 
                 if (validate) {

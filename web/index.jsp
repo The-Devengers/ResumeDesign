@@ -31,6 +31,7 @@
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     Resume
                                 </a>
+                                
                                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <li><a class="dropdown-item" href="#">Professional</a></li>
                                     <li><a class="dropdown-item" href="#">Modern</a></li>
@@ -101,7 +102,7 @@
             <div class="col-lg text-center">
                 <button id="buildbtn" type="button" class="btn btn-primary btn-lg px-5 py-3" style="font-weight: bolder;" >Build My CV</button>
             </div>
-
+            
             <div class="container-fluid py-5 d-flex justify-content-evenly">
                 <button type="button" class="btn btn-outline-primary">
                     <strong>PROFESSIONAL</strong>
@@ -118,7 +119,7 @@
                 <button type="button" class="btn btn-outline-primary">
                     <strong>CREATIVE</strong>
                 </button>
-            </div>
+            </div>           
         </div>
 
 
