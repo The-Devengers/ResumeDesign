@@ -65,6 +65,11 @@ public class userDAO implements UserService {
             if (rs.next()) {
                 oldUser.setUsername(rs.getString("username"));
                 oldUser.setPassword(rs.getString("password"));
+                oldUser.setFullname(rs.getString("fullname"));
+                oldUser.setPhone(rs.getString("phone"));
+                oldUser.setEmail(rs.getString("email"));
+                oldUser.setGender("gender");
+                oldUser.setAddress(rs.getString("address"));
                 oldUser.setStatus(1);
             } else {
                 oldUser.setStatus(0);

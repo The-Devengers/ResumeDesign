@@ -101,15 +101,15 @@
 
 
                                         <div class="form-outline form-white mb-4">
-                                            <div class="btn-group me-2" role="group" aria-label="First group">
+                                            <div id="gender" class="btn-group me-2" role="group" aria-label="First group">
                                                 <label class="form-label">Gender</label>
                                             </div>
                                             <br>
                                             <div class="btn-group me-2" role="group" aria-label="First group">
-                                                <input class="form-check-input" type="radio" name="gender" value="Male">Male
+                                                <input class="form-check-input" type="radio" name="gender" value="Male" >Male
                                             </div>
                                             <div class="btn-group me-2" role="group" aria-label="First group">
-                                                <input class="form-check-input" type="radio" name="gender" value="Female">Female
+                                                <input class="form-check-input" type="radio" name="gender" value="Female" >Female
                                             </div>
                                         </div>
 
@@ -289,7 +289,6 @@
                 } else if (ifUserNameExist(usernameValue) === false) {
                     setError(username, 'Username already exist');
                     var valid = false;
-
                 } else {
                     setSuccess(username);
                     storeCookie('username', usernameValue);
@@ -388,6 +387,7 @@
                     var valid = true;
                     return valid;
                 }
+
             };
 
 

@@ -132,7 +132,7 @@
                 const signin = document.getElementById('signin');
 
                 if (signin === null) {
-                    window.location.href = 'http://localhost:8080/ResumeDesign/ResumeForm.jsp?name=';
+                    window.location.href = 'http://localhost:8080/ResumeDesign/ResumeForm.jsp?';
                 } else {
                     window.location.href = 'http://localhost:8080/ResumeDesign/UserLogIn.jsp';
                 }

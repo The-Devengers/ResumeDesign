@@ -14,6 +14,6 @@ public class Resume {
     private String title;
     private Date createDate;
     private Date updateDate;
-    private long evaluation_score; 
+    private User owner
     
 }

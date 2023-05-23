@@ -8,6 +8,10 @@
         <servlet-name>UserLogOut</servlet-name>
         <servlet-class>com.resume.HttpServlet.UserLogOut</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>StoreResume</servlet-name>
+        <servlet-class>com.resume.HttpServlet.StoreResume</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>UserLogIn</servlet-name>
         <url-pattern>/UserLogIn</url-pattern>
@@ -15,6 +19,10 @@
     <servlet-mapping>
         <servlet-name>UserLogOut</servlet-name>
         <url-pattern>/UserLogOut</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>StoreResume</servlet-name>
+        <url-pattern>/StoreResume</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

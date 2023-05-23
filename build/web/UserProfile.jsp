@@ -92,91 +92,102 @@
         </nav>
         <section> 
             <div class="container py-5">
-    <div class="row ">
-      <div class="col-lg-12">
-        <div class="card mb-4">
-          <div class="card-body background">
-             <div class="row">
-              <div class="col-sm-3">
-                <p class="mb-0">User Name</p>
-              </div>
-              <div id="container1" class="col-sm-6">
-                <p id="uname" class="text-muted mb-0"><%= username%></p>
-              </div>
+                <div class="row ">
+                    <div class="col-lg-12">
+                        <div class="card mb-4">
+                            <div class="card-body background">
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <p class="mb-0">User Name</p>
+                                    </div>
+                                    <div id="container1" class="col-sm-6">
+                                        <p id="uname" class="text-muted mb-0"><%= username%></p>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <p class="mb-0">Full Name</p>
+                                    </div>
+                                    <div id="container2" class="col-sm-6">
+                                        <%
+                                            if (fullname != null) {
+                                        %>
+                                        <p id="fname" class="text-muted mb-0"><%= fullname%></p>     
+                                        <%  } else {%>
+                                        <p id="fname" class="text-muted mb-0">Full name</p>    
+                                        <% }%>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <p class="mb-0">Gender</p>
+                                    </div>
+                                    <div id="container3" class="col-sm-6">
+                                        <p id="gen" class="text-muted mb-0"><%= gender%></p>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <p class="mb-0">Email</p>
+                                    </div>
+                                    <div id="container4" class="col-sm-6">
+                                        <p id="mail" class="text-muted mb-0"><%= email%></p>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <p class="mb-0">Phone number</p>
+                                    </div>
+                                    <div id="container5" class="col-sm-6">
+                                        <%
+                                            if (phone != null) {
+                                        %>
+                                        <p id="pnum" class="text-muted mb-0"><%= phone%></p>     
+                                        <%  } else {%>
+                                        <p id="pnum" class="text-muted mb-0">Phone number</p>    
+                                        <% }%>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <p class="mb-0">Address</p>
+                                    </div>
+                                    <div id="container6" class="col-sm-6">
+                                        <%
+                                            if (address != null) {
+                                        %>
+                                        <p id="add" class="text-muted mb-0"><%= address%></p>      
+                                        <%  } else {%>
+                                        <p id="add" class="text-muted mb-0">Address</p>    
+                                        <% }%>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="card-body text-center" >
+                            <button id="createresume" class="btn btn-outline-primary me-5">Create resume</button>
+                        </div>
+                    </div>
+                </div>
             </div>
-              <hr>
-            <div class="row">
-              <div class="col-sm-3">
-                <p class="mb-0">Full Name</p>
-              </div>
-              <div id="container2" class="col-sm-6">
-                  <%
-                      if (fullname != null){
-                      %>
-                <p id="fname" class="text-muted mb-0"><%= fullname%></p>     
-                    <%  }else {%>
-                <p id="fname" class="text-muted mb-0">Full name</p>    
-                   <% }%>
-              </div>
-            </div>
-            <hr>
-            <div class="row">
-              <div class="col-sm-3">
-                <p class="mb-0">Gender</p>
-              </div>
-              <div id="container3" class="col-sm-6">
-                <p id="gen" class="text-muted mb-0"><%= gender%></p>
-              </div>
-            </div>
-              <hr>
-            <div class="row">
-              <div class="col-sm-3">
-                <p class="mb-0">Email</p>
-              </div>
-              <div id="container4" class="col-sm-6">
-                <p id="mail" class="text-muted mb-0"><%= email%></p>
-              </div>
-            </div>
-            <hr>
-            <div class="row">
-              <div class="col-sm-3">
-                <p class="mb-0">Phone number</p>
-              </div>
-              <div id="container5" class="col-sm-6">
-                  <%
-                      if (phone != null){
-                      %>
-                <p id="pnum" class="text-muted mb-0"><%= phone%></p>     
-                    <%  }else {%>
-                <p id="pnum" class="text-muted mb-0">Phone number</p>    
-                   <% }%>
-              </div>
-            </div>
-            <hr>
-            <div class="row">
-              <div class="col-sm-3">
-                <p class="mb-0">Address</p>
-              </div>
-              <div id="container6" class="col-sm-6">
-                  <%
-                      if (address != null){
-                      %>
-                <p id="add" class="text-muted mb-0"><%= address%></p>      
-                    <%  }else {%>
-                <p id="add" class="text-muted mb-0">Address</p>    
-                   <% }%>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-              <div class="col-lg-12">
-                  <div class="card-body text-center" >
-                      <button id="createresume" class="btn btn-outline-primary me-5">Create resume</button>
-                  </div>
-              </div>
-    </div>
-  </div>
-</section>
+        </section>
+
+        <script>
+            var createBtn = document.getElementById('createresume');
+            
+            if (createBtn !== null) {
+                createBtn.addEventListener('click', e =>{
+                window.location.href = 'http://localhost:8080/ResumeDesign/ResumeForm.jsp';
+            });
+            }
+            
+        </script>
     </body>
 </html>

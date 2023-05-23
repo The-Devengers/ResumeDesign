@@ -66,7 +66,101 @@
         </style>
 
     </head>
-    <body class="bg-light">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+    <body class="bg-light p-1">
+        <div>
+            <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light mt-2 mx-4">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="http://localhost:8080/ResumeDesign/index.jsp">APLY.</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Resume
+                                </a>
+
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <li><a class="dropdown-item" href="#">Professional</a></li>
+                                    <li><a class="dropdown-item" href="#">Modern</a></li>
+                                    <li><a class="dropdown-item" href="#">Simple</a></li>
+                                    <li><a class="dropdown-item" href="#">Creative</a></li>
+
+
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item" href="#">Examples</a></li>
+                                </ul>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="#">FAQ</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="#">Blog</a>
+                            </li>
+
+                        </ul>
+
+                        <%  try {
+                                User user = (User) session.getAttribute("user");
+                                if (user != null) {
+
+                        %>
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="navbar-nav ms-auto me-5 mb-3 mb-lg-0">
+
+
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        Hi, <%= user.getUsername()%>
+                                    </a>
+                                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                        <li><a class="dropdown-item" href="UserProfile.jsp">View profile</a></li>
+                                        <li><a class="dropdown-item" href="">Setting</a></li>
+
+
+                                        <li><hr class="dropdown-divider"></li>
+                                        <li><a class="dropdown-item text-danger bold" id="signout" href="http://localhost:8080/ResumeDesign/Logout.jsp">Sign out</a></li>
+                                    </ul>
+                                </li>
+
+                        </div>
+
+                        <%   } else {
+                        %> <a class="nav-link active" href="http://localhost:8080/ResumeDesign/UserCreate.jsp">Create account</a>
+                        <a id="signin" class="btn btn-outline-warning" style="color: black;" href="http://localhost:8080/ResumeDesign/UserLogIn.jsp">Sign In</a> 
+                        <% }
+                            } catch (Exception ex) {
+                            }%>
+                    </div>
+
+                </div>
+
+            </nav>
+
+        </div>
+
+        <div class="d-flex flex-column flex-shrink-0 bg-light sticky-top top-50" style="width: 4.5rem;">
+            <ul class="nav nav-pills nav-flush flex-column mb-auto text-center">
+                <li class="nav-item">
+                    <a href="#" name="save" class="bg-warning text-dark fw-bolder nav-link active py-1 border-bottom" aria-current="page" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Home">
+                        SAVE
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="nav-link py-1 border-bottom" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Dashboard">
+                        PREVIEW
+                    </a>
+                </li>
+            </ul>
+
+        </div>            
         <%
             String name = request.getParameter("name");
         %>
@@ -201,18 +295,17 @@
                                         </div>
                                         <div class="col-md-6">
                                             <label class="form-label">Experience level</label>
-                                            <input type="range" class="form-range range-cust" min="1" max="5" step="1" name="level" onchange="updateTextInput(this.value);" required>
+                                            <input type="range" class="form-range range-cust " min="1" max="5" step="1" name="level" onchange="updateTextInput(this.value);" required>
                                             <p id="textInput"></p>
+                                            <div><button type="button" class="btn btn-warning text-light">Add</button></div>
                                         </div>
+                                        
+                                        
                                     </div>
                                 </div>
+                                
                             </div>
-                            <div class="row mb-5 gx-5">
-                                <div class="col-xxl-6 mb-5 mb-xxl-0"><input id="submit" type="submit" value="Preview" class="btn btn-outline-primary"></div>
-                                <div class="col-xxl-6 mb-5 mb-xxl-0"><button id="btn-print" class="btn btn-outline-primary">Print & Generate PDF</button></div>
 
-                                <div class="col-xxl-6 mb-5 mb-xxl-0"><input type="reset" value="cancel" class="btn btn-outline-primary"></div>
-                            </div>
                         </div>
                     </form> 
 
@@ -221,6 +314,11 @@
             </div>
         </div>
 
+        <iframe
+            id="frame"
+            style="width: 100%; border: 0; height: 0"
+            src="receipt.html"
+            ></iframe>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.min.js"></script>
 
         <script
