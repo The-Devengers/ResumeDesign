@@ -145,14 +145,14 @@
             </nav>
 
         </div>
-        <form action="<%= request.getContextPath()%>/StoreResume" method="post" class="needs-validation" novalidate enctype="multipart/form-data">
+        <form action="<%= request.getContextPath()%>/StoreResume" method="post" class="needs-validation" novalidate enctype="multipart/form-data" onsubmit="return validateFileSize()">
 
             <div class="d-flex flex-column flex-shrink-0 bg-light sticky-top top-50" style="width: 4.5rem;">
                 <ul class="nav nav-pills nav-flush flex-column mb-auto text-center">
                     <li class="nav-item">
                         <input type="submit" class="btn-outline-warning fw-bold text-dark" name="save" value="VIEW" required>
                     </li>
-                    
+
                     <li class="nav-item">
                         <input type="submit" class="btn-outline-warning fw-bold text-dark mx-3" name="store" value="SAVE" required>
                     </li>
@@ -193,6 +193,9 @@
                                             <input name="profileImage" type="file" class="form-control" id="inputGroupFile01">
                                         </div>
                                         <div class="text-secondary"><p>Accepts only: .png, .jpq under size 5MB</p></div>
+
+
+
 
                                         <div class="col-md-3">
                                             <label class="form-label">First Name</label>
@@ -329,64 +332,76 @@
         <script type="text/javascript" src="script/resumePrint.js"></script>
 
         <script>
-                                            document.addEventListener('DOMContentLoaded', function () {
-                                                var editableHeading = document.getElementById('editable-heading');
+                                                function validateFileSize() {
+                                                    var fileInput = document.getElementById('profileImage');
+                                                    var fileSize = fileInput.files[0].size;
+                                                    var maxSize = 20848820; // Maximum file size limit in bytes
 
-                                                editableHeading.addEventListener('click', function () {
-                                                    var currentText = this.innerText;
-                                                    this.innerHTML = '<input type="text" id="editable-input"placeholder="UNTITLED" value="' + currentText + '" />';
-                                                    var input = document.getElementById('editable-input');
-                                                    input.focus();
-                                                });
-
-                                                document.addEventListener('blur', function (event) {
-                                                    var input = event.target;
-                                                    if (input && input.getAttribute('id') === 'editable-input') {
-                                                        var newText = input.value;
-                                                        var newHeading = document.createElement('h1');
-                                                        newHeading.setAttribute('class', 'display-5 editable');
-                                                        newHeading.innerText = newText;
-                                                        newHeading.setAttribute('name', 'title');
-                                                        editableHeading.parentNode.replaceChild(newHeading, input);
+                                                    if (fileSize > maxSize) {
+                                                        alert('The file size exceeds the maximum limit of 20MB.');
+                                                        return false;
                                                     }
-                                                });
-                                            });
 
-                                            function updateTextInput(val) {
-                                                var level;
-                                                switch (val) {
-                                                    case "1":
-                                                        level = "Novice";
-                                                        break;
-                                                    case "2":
-                                                        level = "Beginner";
-                                                        break;
-                                                    case "3":
-                                                        level = "Skillful";
-                                                        break;
-                                                    case "4":
-                                                        level = "Experienced";
-                                                        break;
-                                                    case "5":
-                                                        level = "Expert";
-                                                        break;
+                                                    return true;
                                                 }
-                                                document.getElementById('textInput').innerHTML = level;
-                                            }
-                                            (function () {
-                                                'use strict';
-                                                var forms = document.querySelectorAll('.needs-validation');
-                                                Array.prototype.slice.call(forms)
-                                                        .forEach(function (form) {
-                                                            form.addEventListener('submit', function (event) {
-                                                                if (!form.checkValidity()) {
-                                                                    event.preventDefault();
-                                                                    event.stopPropagation();
-                                                                }
-                                                                form.classList.add('was-validated');
-                                                            }, false);
-                                                        });
-                                            })();
+                                                document.addEventListener('DOMContentLoaded', function () {
+                                                    var editableHeading = document.getElementById('editable-heading');
+
+                                                    editableHeading.addEventListener('click', function () {
+                                                        var currentText = this.innerText;
+                                                        this.innerHTML = '<input type="text" id="editable-input"placeholder="UNTITLED" value="' + currentText + '" />';
+                                                        var input = document.getElementById('editable-input');
+                                                        input.focus();
+                                                    });
+
+                                                    document.addEventListener('blur', function (event) {
+                                                        var input = event.target;
+                                                        if (input && input.getAttribute('id') === 'editable-input') {
+                                                            var newText = input.value;
+                                                            var newHeading = document.createElement('h1');
+                                                            newHeading.setAttribute('class', 'display-5 editable');
+                                                            newHeading.innerText = newText;
+                                                            newHeading.setAttribute('name', 'title');
+                                                            editableHeading.parentNode.replaceChild(newHeading, input);
+                                                        }
+                                                    });
+                                                });
+
+                                                function updateTextInput(val) {
+                                                    var level;
+                                                    switch (val) {
+                                                        case "1":
+                                                            level = "Novice";
+                                                            break;
+                                                        case "2":
+                                                            level = "Beginner";
+                                                            break;
+                                                        case "3":
+                                                            level = "Skillful";
+                                                            break;
+                                                        case "4":
+                                                            level = "Experienced";
+                                                            break;
+                                                        case "5":
+                                                            level = "Expert";
+                                                            break;
+                                                    }
+                                                    document.getElementById('textInput').innerHTML = level;
+                                                }
+                                                (function () {
+                                                    'use strict';
+                                                    var forms = document.querySelectorAll('.needs-validation');
+                                                    Array.prototype.slice.call(forms)
+                                                            .forEach(function (form) {
+                                                                form.addEventListener('submit', function (event) {
+                                                                    if (!form.checkValidity()) {
+                                                                        event.preventDefault();
+                                                                        event.stopPropagation();
+                                                                    }
+                                                                    form.classList.add('was-validated');
+                                                                }, false);
+                                                            });
+                                                })();
         </script>
     </body>
 

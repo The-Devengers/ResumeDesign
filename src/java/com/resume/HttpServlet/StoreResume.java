@@ -78,12 +78,15 @@ public class StoreResume extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
+        response.setContentType("UTF-8");
+        
         HttpSession session = request.getSession();
 
         Part profileImage = request.getPart("profileImage");
 
         String imageFileName = profileImage.getSubmittedFileName();
-        String uploadPath = request.getContextPath() + "/tmpImage/" + imageFileName;
+        String uploadPath = request.getContextPath() + "/"+ imageFileName;
 
         try {
 
