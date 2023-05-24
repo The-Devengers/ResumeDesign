@@ -4,17 +4,26 @@
  */
 package com.resume.HttpServlet;
 
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.PrintWriter;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import javax.servlet.http.Part;
 
 /**
  *
  * @author User
  */
+@MultipartConfig
+@WebServlet(name = "StoreResume", urlPatterns = {"/StoreResume"})
 public class StoreResume extends HttpServlet {
 
     /**
@@ -29,15 +38,16 @@ public class StoreResume extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet StoreResume</title>");            
+            out.println("<title>Servlet StoreResume</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet StoreResume at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet StoreResume at " + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -55,7 +65,6 @@ public class StoreResume extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
     }
 
     /**
@@ -69,7 +78,80 @@ public class StoreResume extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        HttpSession session = request.getSession();
+
+        Part profileImage = request.getPart("profileImage");
+
+        String imageFileName = profileImage.getSubmittedFileName();
+        String uploadPath = request.getContextPath() + "/tmpImage/" + imageFileName;
+
+        try {
+
+            FileOutputStream fos = new FileOutputStream(uploadPath);
+            InputStream is = profileImage.getInputStream();
+
+            byte[] data = new byte[is.available()];
+            is.read(data);
+            fos.write(data);
+            fos.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        String fname = request.getParameter("fname");
+        String lname = request.getParameter("lname");
+        String phonenum = request.getParameter("phonenum");
+        String email = request.getParameter("email");
+        String country = request.getParameter("country");
+        String city = request.getParameter("city");
+        String summary = request.getParameter("summary");
+        String address = request.getParameter("address");
+        String job = request.getParameter("job");
+        String employer = request.getParameter("employer");
+        String jobstartdate = request.getParameter("jobstartdate");
+        String jobenddate = request.getParameter("jobenddate");
+        String jobDescription = request.getParameter("job-description");
+
+        String major = request.getParameter("major");
+        String school = request.getParameter("school");
+        String schoolstartdate = request.getParameter("schoolstartdate");
+        String schoolenddate = request.getParameter("schoolenddate");
+        String eduDescription = request.getParameter("edu-description");
+
+        String skill = request.getParameter("skill");
+        String softSkill = request.getParameter("softskill");
+        String level = request.getParameter("level");
+
+        RequestDispatcher rd = request.getRequestDispatcher("/receipt.jsp");
+        request.setAttribute("image", uploadPath);
+        request.setAttribute("fname", fname);
+        request.setAttribute("lname", lname);
+        request.setAttribute("phonenum", phonenum);
+        request.setAttribute("email", email);
+        request.setAttribute("country", country);
+        request.setAttribute("city", city);
+        request.setAttribute("summary", summary);
+        request.setAttribute("address", address);
+
+        request.setAttribute("job", job);
+        request.setAttribute("employer", employer);
+        request.setAttribute("jobstartdate", jobstartdate);
+        request.setAttribute("jobenddate", jobenddate);
+        request.setAttribute("jobDescription", jobDescription);
+
+        request.setAttribute("major", major);
+        request.setAttribute("school", school);
+        request.setAttribute("schoolstartdate", schoolstartdate);
+        request.setAttribute("schoolenddate", schoolenddate);
+        request.setAttribute("eduDescription", eduDescription);
+
+        request.setAttribute("skill", skill);
+        request.setAttribute("softskill", softSkill);
+        
+        request.setAttribute("level", level);
+
+        rd.forward(request, response);
     }
 
     /**

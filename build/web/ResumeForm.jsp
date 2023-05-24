@@ -102,7 +102,7 @@
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="#">Blog</a>
+                                <a class="nav-link active" aria-current="page" href="https://www.facebook.com/profile.php?id=100093011347235">Blog</a>
                             </li>
 
                         </ul>
@@ -145,32 +145,29 @@
             </nav>
 
         </div>
+        <form action="<%= request.getContextPath()%>/StoreResume" method="post" class="needs-validation" novalidate enctype="multipart/form-data">
 
-        <div class="d-flex flex-column flex-shrink-0 bg-light sticky-top top-50" style="width: 4.5rem;">
-            <ul class="nav nav-pills nav-flush flex-column mb-auto text-center">
-                <li class="nav-item">
-                    <a href="#" name="save" class="bg-warning text-dark fw-bolder nav-link active py-1 border-bottom" aria-current="page" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Home">
-                        SAVE
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="nav-link py-1 border-bottom" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Dashboard">
-                        PREVIEW
-                    </a>
-                </li>
-            </ul>
+            <div class="d-flex flex-column flex-shrink-0 bg-light sticky-top top-50" style="width: 4.5rem;">
+                <ul class="nav nav-pills nav-flush flex-column mb-auto text-center">
+                    <li class="nav-item">
+                        <input type="submit" class="btn-outline-warning fw-bold text-dark" name="save" value="VIEW" required>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <input type="submit" class="btn-outline-warning fw-bold text-dark mx-3" name="store" value="SAVE" required>
+                    </li>
+                </ul>
 
-        </div>            
-        <%
-            String name = request.getParameter("name");
-        %>
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
+            </div>            
+            <%
+                String name = request.getParameter("name");
+            %>
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
 
 
-                    <%-- -------------------FORM------------------ --%>
-                    <form class="needs-validation" novalidate>
+                        <%-- -------------------FORM------------------ --%>
                         <div class="col-8 mx-4 my-4 align-items-center">
                             <h1 id="editable-heading" class="display-5 editable col-6">UNTITLED</h1>
                             <label class=" col-3 input-group-text bg-dark text-light " for="inputGroupFile01">
@@ -181,6 +178,7 @@
                                     out.print(formattedDate);
                                 %>
                             </label>
+                            <input name="date" type="hidden" value="<%= formattedDate%>"/>
                         </div>
 
 
@@ -192,7 +190,7 @@
                                         <h5 class="mb-4 mt-0">Personal information</h5>
                                         <div class="input-group mb-2">
                                             <label class="input-group-text bg-primary text-light" for="inputGroupFile01">Profile picture</label>
-                                            <input type="file" class="form-control" id="inputGroupFile01">
+                                            <input name="profileImage" type="file" class="form-control" id="inputGroupFile01">
                                         </div>
                                         <div class="text-secondary"><p>Accepts only: .png, .jpq under size 5MB</p></div>
 
@@ -253,7 +251,7 @@
                                         </div>
                                         <div class="col-md-12">
                                             <label class="form-label">Description</label>
-                                            <textarea class="form-control" name="summary" rows="5" cols="60" required></textarea>
+                                            <textarea class="form-control" name="job-description" rows="5" cols="60" required></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -264,11 +262,11 @@
                                         <h5 class="mb-4 mt-0">Education</h5>
                                         <div class="col-md-6">
                                             <label class="form-label">School name</label>
-                                            <input type="text" class="form-control" name="job" required>
+                                            <input type="text" class="form-control" name="major" required>
                                         </div>
                                         <div class="col-md-6">
                                             <label class="form-label">Certificate</label>
-                                            <input type="text" class="form-control" name="employer" required>
+                                            <input type="text" class="form-control" name="school" required>
                                         </div>
                                         <div class="col-md-6">
                                             <label class="form-label">Start date</label>
@@ -280,7 +278,7 @@
                                         </div>
                                         <div class="col-md-12">
                                             <label class="form-label">Description</label>
-                                            <textarea class="form-control" name="summary" rows="5" cols="60" required></textarea>
+                                            <textarea class="form-control" name="edu-description" rows="5" cols="60" required></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -290,34 +288,35 @@
                                     <div class="row g-3">
                                         <h5 class="mb-4 mt-0">Skills</h5>
                                         <div class="col-md-6">
-                                            <label class="form-label">Skill name</label>
-                                            <input type="text" class="form-control" name="job" required>
+                                            <label class="form-label">Skills</label>
+                                            <input type="text" class="form-control" name="skill" required>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="form-label">Soft Skills</label>
+                                            <input type="text" class="form-control" name="softskill" required>
                                         </div>
                                         <div class="col-md-6">
                                             <label class="form-label">Experience level</label>
                                             <input type="range" class="form-range range-cust " min="1" max="5" step="1" name="level" onchange="updateTextInput(this.value);" required>
                                             <p id="textInput"></p>
-                                            <div><button type="button" class="btn btn-warning text-light">Add</button></div>
                                         </div>
-                                        
-                                        
                                     </div>
                                 </div>
-                                
+
                             </div>
 
                         </div>
-                    </form> 
 
-                    <%-- -------------------FORM SECTION------------------ --%>
+
+                        <%-- -------------------FORM SECTION------------------ --%>
+                    </div>
                 </div>
             </div>
-        </div>
-
+        </form> 
         <iframe
             id="frame"
             style="width: 100%; border: 0; height: 0"
-            src="receipt.html"
+            src="receipt.jsp"
             ></iframe>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.min.js"></script>
 
@@ -330,63 +329,64 @@
         <script type="text/javascript" src="script/resumePrint.js"></script>
 
         <script>
-                                                document.addEventListener('DOMContentLoaded', function () {
-                                                    var editableHeading = document.getElementById('editable-heading');
+                                            document.addEventListener('DOMContentLoaded', function () {
+                                                var editableHeading = document.getElementById('editable-heading');
 
-                                                    editableHeading.addEventListener('click', function () {
-                                                        var currentText = this.innerText;
-                                                        this.innerHTML = '<input type="text" id="editable-input"placeholder="UNTITLED" value="' + currentText + '" />';
-                                                        var input = document.getElementById('editable-input');
-                                                        input.focus();
-                                                    });
-
-                                                    document.addEventListener('blur', function (event) {
-                                                        var input = event.target;
-                                                        if (input && input.getAttribute('id') === 'editable-input') {
-                                                            var newText = input.value;
-                                                            var newHeading = document.createElement('h1');
-                                                            newHeading.setAttribute('class', 'display-5 editable');
-                                                            newHeading.innerText = newText;
-                                                            editableHeading.parentNode.replaceChild(newHeading, input);
-                                                        }
-                                                    });
+                                                editableHeading.addEventListener('click', function () {
+                                                    var currentText = this.innerText;
+                                                    this.innerHTML = '<input type="text" id="editable-input"placeholder="UNTITLED" value="' + currentText + '" />';
+                                                    var input = document.getElementById('editable-input');
+                                                    input.focus();
                                                 });
 
-                                                function updateTextInput(val) {
-                                                    var level;
-                                                    switch (val) {
-                                                        case "1":
-                                                            level = "Novice";
-                                                            break;
-                                                        case "2":
-                                                            level = "Beginner";
-                                                            break;
-                                                        case "3":
-                                                            level = "Skillful";
-                                                            break;
-                                                        case "4":
-                                                            level = "Experienced";
-                                                            break;
-                                                        case "5":
-                                                            level = "Expert";
-                                                            break;
+                                                document.addEventListener('blur', function (event) {
+                                                    var input = event.target;
+                                                    if (input && input.getAttribute('id') === 'editable-input') {
+                                                        var newText = input.value;
+                                                        var newHeading = document.createElement('h1');
+                                                        newHeading.setAttribute('class', 'display-5 editable');
+                                                        newHeading.innerText = newText;
+                                                        newHeading.setAttribute('name', 'title');
+                                                        editableHeading.parentNode.replaceChild(newHeading, input);
                                                     }
-                                                    document.getElementById('textInput').innerHTML = level;
+                                                });
+                                            });
+
+                                            function updateTextInput(val) {
+                                                var level;
+                                                switch (val) {
+                                                    case "1":
+                                                        level = "Novice";
+                                                        break;
+                                                    case "2":
+                                                        level = "Beginner";
+                                                        break;
+                                                    case "3":
+                                                        level = "Skillful";
+                                                        break;
+                                                    case "4":
+                                                        level = "Experienced";
+                                                        break;
+                                                    case "5":
+                                                        level = "Expert";
+                                                        break;
                                                 }
-                                                (function () {
-                                                    'use strict';
-                                                    var forms = document.querySelectorAll('.needs-validation');
-                                                    Array.prototype.slice.call(forms)
-                                                            .forEach(function (form) {
-                                                                form.addEventListener('submit', function (event) {
-                                                                    if (!form.checkValidity()) {
-                                                                        event.preventDefault();
-                                                                        event.stopPropagation();
-                                                                    }
-                                                                    form.classList.add('was-validated');
-                                                                }, false);
-                                                            });
-                                                })();
+                                                document.getElementById('textInput').innerHTML = level;
+                                            }
+                                            (function () {
+                                                'use strict';
+                                                var forms = document.querySelectorAll('.needs-validation');
+                                                Array.prototype.slice.call(forms)
+                                                        .forEach(function (form) {
+                                                            form.addEventListener('submit', function (event) {
+                                                                if (!form.checkValidity()) {
+                                                                    event.preventDefault();
+                                                                    event.stopPropagation();
+                                                                }
+                                                                form.classList.add('was-validated');
+                                                            }, false);
+                                                        });
+                                            })();
         </script>
     </body>
 

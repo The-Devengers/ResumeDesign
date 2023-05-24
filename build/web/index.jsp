@@ -45,7 +45,7 @@
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="#">FAQ</a>
+                                <a class="nav-link active" aria-current="page" href="https://www.facebook.com/profile.php?id=100093011347235">FAQ</a>
                             </li>
 
                             <li class="nav-item">
@@ -132,7 +132,7 @@
                 const signin = document.getElementById('signin');
 
                 if (signin === null) {
-                    window.location.href = 'http://localhost:8080/ResumeDesign/ResumeForm.jsp?';
+                    window.location.href = 'http://localhost:8080/ResumeDesign/ResumeForm.jsp';
                 } else {
                     window.location.href = 'http://localhost:8080/ResumeDesign/UserLogIn.jsp';
                 }

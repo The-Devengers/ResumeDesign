@@ -28,7 +28,7 @@
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="#">Blog</a>
+                                <a class="nav-link active" aria-current="page" href="https://www.facebook.com/profile.php?id=100093011347235">Blog</a>
                             </li>
 
                         </ul>
