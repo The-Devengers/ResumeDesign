@@ -72,6 +72,7 @@ public class userDAO implements UserService {
                 oldUser.setId(Integer.parseInt(rs.getString("id")));
                 oldUser.setAddress(rs.getString("address"));
                 oldUser.setStatus(1);
+                
             } else {
                 oldUser.setStatus(0);
         }

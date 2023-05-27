@@ -107,7 +107,8 @@
 
                         </ul>
 
-                        <%  try {
+                        <%
+                            try {
                                 User user = (User) session.getAttribute("user");
                                 if (user != null) {
 
@@ -123,15 +124,12 @@
                                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                         <li><a class="dropdown-item" href="UserProfile.jsp">View profile</a></li>
                                         <li><a class="dropdown-item" href="">Setting</a></li>
-
-
                                         <li><hr class="dropdown-divider"></li>
                                         <li><a class="dropdown-item text-danger bold" id="signout" href="http://localhost:8080/ResumeDesign/Logout.jsp">Sign out</a></li>
                                     </ul>
                                 </li>
 
                         </div>
-
                         <%   } else {
                         %> <a class="nav-link active" href="http://localhost:8080/ResumeDesign/UserCreate.jsp">Create account</a>
                         <a id="signin" class="btn btn-outline-warning" style="color: black;" href="http://localhost:8080/ResumeDesign/UserLogIn.jsp">Sign In</a> 
@@ -143,25 +141,25 @@
                 </div>
 
             </nav>
-
         </div>
-        <form action="<%= request.getContextPath()%>/StoreResume" method="post" class="needs-validation" novalidate enctype="multipart/form-data" onsubmit="return validateFileSize()">
+
+        <form id="form" action="<%= request.getContextPath()%>/StoreResume?" method="post" class="needs-validation" novalidate enctype="multipart/form-data">
+
+
 
             <div class="d-flex flex-column flex-shrink-0 bg-light sticky-top top-50" style="width: 4.5rem;">
                 <ul class="nav nav-pills nav-flush flex-column mb-auto text-center">
                     <li class="nav-item">
-                        <input type="submit" class="btn-outline-warning fw-bold text-dark" name="save" value="VIEW" required>
+                        <input type="submit" class="btn-outline-warning fw-bold text-dark" name="view" value="VIEW" required>
                     </li>
 
                     <li class="nav-item">
-                        <input type="submit" class="btn-outline-warning fw-bold text-dark mx-3" name="store" value="SAVE" required>
+                        <input type="submit" class="btn-outline-warning fw-bold text-dark mx-3" name="save" value="SAVE" required>
                     </li>
                 </ul>
 
             </div>            
-            <%
-                String name = request.getParameter("name");
-            %>
+
             <div class="container">
                 <div class="row">
                     <div class="col-12">
@@ -170,15 +168,14 @@
                         <%-- -------------------FORM------------------ --%>
                         <div class="col-8 mx-4 my-4 align-items-center">
                             <h1 id="editable-heading" class="display-5 editable col-6">UNTITLED</h1>
+                            <input type="hidden" name="title" value="UNTITLED"/>
                             <label class=" col-3 input-group-text bg-dark text-light " for="inputGroupFile01">
-                                <%
-                                    Date date = new Date();
+                                <%                                    Date date = new Date();
                                     SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss dd-MM-yyyy");
                                     String formattedDate = sdf.format(date);
                                     out.print(formattedDate);
                                 %>
                             </label>
-                            <input name="date" type="hidden" value="<%= formattedDate%>"/>
                         </div>
 
 
@@ -315,6 +312,14 @@
                     </div>
                 </div>
             </div>
+            <% try {
+                    User dummy = (User) session.getAttribute("user");%>
+            <input type="hidden" name="uID" value="<%= dummy.getId()%>"/>
+            <%
+                } catch (Exception e) {
+                }
+            %>
+            <input name="date" type="hidden" value="<%= formattedDate%>"/>
         </form> 
         <iframe
             id="frame"
@@ -332,24 +337,12 @@
         <script type="text/javascript" src="script/resumePrint.js"></script>
 
         <script>
-                                                function validateFileSize() {
-                                                    var fileInput = document.getElementById('profileImage');
-                                                    var fileSize = fileInput.files[0].size;
-                                                    var maxSize = 20848820; // Maximum file size limit in bytes
-
-                                                    if (fileSize > maxSize) {
-                                                        alert('The file size exceeds the maximum limit of 20MB.');
-                                                        return false;
-                                                    }
-
-                                                    return true;
-                                                }
                                                 document.addEventListener('DOMContentLoaded', function () {
                                                     var editableHeading = document.getElementById('editable-heading');
 
                                                     editableHeading.addEventListener('click', function () {
                                                         var currentText = this.innerText;
-                                                        this.innerHTML = '<input type="text" id="editable-input"placeholder="UNTITLED" value="' + currentText + '" />';
+                                                        this.innerHTML = '<input name="title" type="text" id="editable-input"placeholder="UNTITLED" value="' + currentText + '" />';
                                                         var input = document.getElementById('editable-input');
                                                         input.focus();
                                                     });
@@ -361,7 +354,7 @@
                                                             var newHeading = document.createElement('h1');
                                                             newHeading.setAttribute('class', 'display-5 editable');
                                                             newHeading.innerText = newText;
-                                                            newHeading.setAttribute('name', 'title');
+
                                                             editableHeading.parentNode.replaceChild(newHeading, input);
                                                         }
                                                     });

@@ -27,19 +27,18 @@ public class resumeDAO {
     public resumeDAO(){};
     
     
-    public Resume storeResume(int uID, String title, String date, String imagePath) {
+    public Resume storeResume(String uID, String title, String date) {
        Resume res = null;
        try {
-           query = "INSERT INTO resume VALUES(?,?,?);";
+           query = "INSERT INTO resume (uID, title, updateDate) VALUES(?,?,?);";
            prep = this.con.prepareStatement(query);
-           prep.setInt(1, uID);
+           prep.setString(1, uID);
            prep.setString(2, title);
            prep.setString(3, date);
-           prep.setString(4, imagePath);
-           rs = prep.executeQuery();
-           res = new Resume(title, date, uID, imagePath);
+           prep.executeUpdate();
+           res = new Resume(title, date, uID);
        } catch (SQLException e) {
-           e.getMessage();
+           System.out.print(e);
        }
        return res;
     }

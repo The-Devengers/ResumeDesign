@@ -10,24 +10,20 @@ package com.resume.dto;
 public class Resume {
     private String title;
     private String updateDate;
-    private int uID;
+    private String uID;
     private String imagePath;
     private int status;
 
-    
-    
-    
     private final int OLD = 1;
     private final int NEW = 0;
 
     public Resume() {
     }
 
-    public Resume(String title, String updateDate, int owner, String imageFileName) {
+    public Resume(String title, String updateDate, String owner) {
         this.title = title;
         this.updateDate = updateDate;
         this.uID = owner;
-        this.imagePath = imageFileName;
         this.status = NEW;
     }
     
@@ -55,11 +51,11 @@ public class Resume {
         this.updateDate = updateDate;
     }
 
-    public int getOwner() {
+    public String getOwner() {
         return uID;
     }
 
-    public void setOwner(int owner) {
+    public void setOwner(String owner) {
         this.uID = owner;
     }
 

@@ -18,6 +18,10 @@
             <file-size-threshold>1048576</file-size-threshold>
         </multipart-config>
     </servlet>
+    <servlet>
+        <servlet-name>SaveResume</servlet-name>
+        <servlet-class>com.resume.HttpServlet.SaveResume</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>UserLogIn</servlet-name>
         <url-pattern>/UserLogIn</url-pattern>
@@ -29,6 +33,10 @@
     <servlet-mapping>
         <servlet-name>StoreResume</servlet-name>
         <url-pattern>/StoreResume</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SaveResume</servlet-name>
+        <url-pattern>/SaveResume</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

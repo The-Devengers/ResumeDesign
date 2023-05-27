@@ -104,6 +104,10 @@ public class UserLogIn extends HttpServlet {
                     
                     HttpSession session = request.getSession();
                     if (loggedUser.getStatus() == 1) {
+                        session.setAttribute("user", loggedUser);
+                        
+
+                        
                         
                         session.setAttribute("user", loggedUser);
                         response.sendRedirect("http://localhost:8080/ResumeDesign/index.jsp");

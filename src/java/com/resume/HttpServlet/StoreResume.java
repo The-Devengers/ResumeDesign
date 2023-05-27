@@ -1,3 +1,4 @@
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
@@ -80,13 +81,18 @@ public class StoreResume extends HttpServlet {
             throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
         response.setContentType("UTF-8");
-        
-        HttpSession session = request.getSession();
 
+        String saveBtn = request.getParameter("save");
+        if (saveBtn != null) {
+            RequestDispatcher fw = request.getServletContext().getRequestDispatcher("/SaveResume");
+            fw.forward(request, response);
+            return;
+        }
         Part profileImage = request.getPart("profileImage");
 
         String imageFileName = profileImage.getSubmittedFileName();
-        String uploadPath = request.getContextPath() + "/"+ imageFileName;
+        String uploadDirectory = "uploads/";  // Relative directory path within your web application
+        String uploadPath = request.getContextPath() + "/" + uploadDirectory + imageFileName;
 
         try {
 
@@ -151,7 +157,7 @@ public class StoreResume extends HttpServlet {
 
         request.setAttribute("skill", skill);
         request.setAttribute("softskill", softSkill);
-        
+
         request.setAttribute("level", level);
 
         rd.forward(request, response);

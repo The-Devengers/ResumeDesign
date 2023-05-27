@@ -3,6 +3,7 @@
     Created on : May 17, 2023, 11:46:38 AM
     Author     : Leon
 --%>
+<%@page import="com.resume.dto.Resume"%>
 <%@page import="com.resume.dto.User"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -173,6 +174,18 @@
                     <div class="col-lg-12">
                         <div class="card-body text-center" >
                             <button id="createresume" class="btn btn-outline-primary me-5">Create resume</button>
+
+                            <% try {
+                                    Resume resume = (Resume) request.getAttribute("resume");
+                                    if (resume != null) {
+
+                            %> <button id="edit" class="btn btn-outline-primary me-5">Continue edit resume</button>
+
+                            <%  }
+                                } catch (Exception e) {
+
+                                }
+                            %>
                         </div>
                     </div>
                 </div>
@@ -181,13 +194,21 @@
 
         <script>
             var createBtn = document.getElementById('createresume');
-            
+
             if (createBtn !== null) {
-                createBtn.addEventListener('click', e =>{
-                window.location.href = 'http://localhost:8080/ResumeDesign/ResumeForm.jsp';
-            });
+                createBtn.addEventListener('click', e => {
+                    window.location.href = 'http://localhost:8080/ResumeDesign/ResumeForm.jsp';
+                });
             }
             
+            var continueEdit = document.getElementById('edit');
+            
+            if (continueEdit !== null) {
+                continueEdit.addEventListener('click', event => {
+                   window.location.href = 'http://localhost:8080/ResumeDesign/ResumeForm.jsp';
+                });
+            }
+
         </script>
     </body>
 </html>

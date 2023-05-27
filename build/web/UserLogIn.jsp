@@ -69,9 +69,7 @@
                                     <p class="mb-0">Not a member? <a href="UserCreate.jsp" class="text-white-50 ">Create account</a></p>
                                 </div>
                                 <br>
-                                <div>
-                                    <p class="mb-0">Admin login? <a href="AdminLogIn.jsp" class="text-white-50 ">Admin</a></p>
-                                </div>
+                                
                             </div>
                         </div>
                     </div>

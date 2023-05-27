@@ -45,7 +45,7 @@
     </head>
     <body>
         <div class="mx-3">
-            <button class="btn-outline-primary" id="btn-print">Print</button>
+            <button class="btn-outline-primary" id="btn-print">Download</button>
         </div>
         
         <div class="container receipt-wrap" id="receipt-wrap">
@@ -81,7 +81,7 @@
                                 <img
 
                                     alt="Profile Image"
-                                    src="http://localhost:8080<%= profile%>"
+                                    src="<%= profile%>"
                                     style="object-fit: contain; height: 100px;"
                                     />
                             </div>
