@@ -132,7 +132,10 @@ public class StoreResume extends HttpServlet {
         String softSkill = request.getParameter("softskill");
         String level = request.getParameter("level");
 
+        
         RequestDispatcher rd = request.getRequestDispatcher("/receipt.jsp");
+        
+        
         request.setAttribute("image", uploadPath);
         request.setAttribute("fname", fname);
         request.setAttribute("lname", lname);

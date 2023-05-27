@@ -27,22 +27,7 @@
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
 
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Resume
-                                </a>
-                                
-                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <li><a class="dropdown-item" href="#">Professional</a></li>
-                                    <li><a class="dropdown-item" href="#">Modern</a></li>
-                                    <li><a class="dropdown-item" href="#">Simple</a></li>
-                                    <li><a class="dropdown-item" href="#">Creative</a></li>
-
-
-                                    <li><hr class="dropdown-divider"></li>
-                                    <li><a class="dropdown-item" href="#">Examples</a></li>
-                                </ul>
-                            </li>
+                            
 
                             <li class="nav-item">
                                 <a class="nav-link active" aria-current="page" href="https://www.facebook.com/profile.php?id=100093011347235">FAQ</a>
@@ -102,24 +87,7 @@
             <div class="col-lg text-center">
                 <button id="buildbtn" type="button" class="btn btn-primary btn-lg px-5 py-3" style="font-weight: bolder;" >Build My CV</button>
             </div>
-            
-            <div class="container-fluid py-5 d-flex justify-content-evenly">
-                <button type="button" class="btn btn-outline-primary">
-                    <strong>PROFESSIONAL</strong>
-                </button>
-
-                <button type="button" class="btn btn-outline-primary">
-                    <strong>MODERN</strong>
-                </button>
-
-                <button type="button" class="btn btn-outline-primary">
-                    <strong>SIMPLE</strong>
-                </button>
-
-                <button type="button" class="btn btn-outline-primary">
-                    <strong>CREATIVE</strong>
-                </button>
-            </div>           
+                
         </div>
 
 

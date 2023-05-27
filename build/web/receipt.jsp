@@ -171,7 +171,7 @@
         printButton.addEventListener("click", () => {
             const element = document.getElementById("receipt-wrap");
 
-            // Create HTML to PDF options
+            // Create HTML to PDF 
             const options = {
                 margin: 10,
                 filename: "resume.pdf",
